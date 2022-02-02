@@ -11,11 +11,11 @@ function App() {
       <Router>
         <Link to="/createpost"> Create A Post</Link>
         <Link to="/"> Home page</Link>
-        <Switch>
+        <Routes>
           <Route path="/" exact component={Home} />
           <Route path="/createpost" exact component={CreatePost} />
           <Route path="/post/:id" exact component={Post} />              
-        </Switch>
+        </Routes>
       </Router>
       
     </div>
