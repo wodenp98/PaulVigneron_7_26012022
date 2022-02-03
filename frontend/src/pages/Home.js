@@ -20,7 +20,7 @@ function Home() {
           <div
             className="post"
             onClick={() => {
-              navigate(`/post/${value.id}`);
+              navigate.push(`/post/${value.id}`);
             }}
           >
             <div className="title"> {value.title} </div>
