@@ -28,8 +28,13 @@ function CreatePost() {
      
     
   return (
-  <div className='CreatePostPage'> 
-    <Formik initialValues={initialValues} onSubmit={onSubmit} validationSchema={validationSchema}>
+  <div className='createPostPage'> 
+    <Formik 
+        initialValues={initialValues} 
+        onSubmit={onSubmit} 
+        validationSchema={validationSchema}
+        >
+
         <Form className='formContainer'>
             <label>Title: </label>
             <ErrorMessage name='title' component="span" />
