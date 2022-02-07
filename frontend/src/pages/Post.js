@@ -45,7 +45,6 @@ function Post() {
           <input
             type="text"
             placeholder="Comment..."
-            autoComplete="off"
             value={newComment}
             onChange={(event) => {
               setNewComment(event.target.value);
