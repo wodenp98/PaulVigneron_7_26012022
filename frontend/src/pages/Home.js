@@ -1,15 +1,22 @@
-import React from "react";
+import React, { useContext } from "react";
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import ThumbUpAltIcon from '@material-ui/icons/ThumbUpAlt';
+import { AuthContext } from "../helpers/AuthContext";
 
 function Home() {
   const [listOfPosts, setListOfPosts] = useState([]);
   const [likedPosts, setLikedPosts] = useState([])
+  // eslint-disable-next-line
+  const { authState } = useContext(AuthContext);
   let navigate = useNavigate();
 
   useEffect(() => {
+
+    if (!localStorage.getItem("accessToken")) {
+      navigate('/login')
+    } else {
     axios.get("http://localhost:3001/posts", {
       headers: { accessToken: localStorage.getItem("accessToken")}
     }).then((response) => {
@@ -18,6 +25,8 @@ function Home() {
         return like.PostId
       }));
     });
+  }
+  // eslint-disable-next-line
   }, []);
 
   const likeAPost = (postId) => {
@@ -70,7 +79,8 @@ function Home() {
               {value.postText}
             </div>
             <div className="footer">
-              <div className="username">{value.username}</div>
+              <div className="username"><Link to ={`/profile/${value.UserId}`}>{value.username}</Link>
+              </div>
               <div className="buttons">
                 <ThumbUpAltIcon
                   onClick={() => {

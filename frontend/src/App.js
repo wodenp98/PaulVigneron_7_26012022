@@ -7,6 +7,7 @@ import Post from "./pages/Post";
 import Registration from "./pages/Registration";
 import Login from "./pages/Login";
 import PageNotFound from "./pages/PageNotFound";
+import Profile from "./pages/Profile"
 import { AuthContext } from "./helpers/AuthContext";
 import { useState, useEffect } from "react";
 import axios from "axios";
@@ -51,12 +52,15 @@ function App() {
         <Router>
           <div className="navbar">
             <div className="links">
-              <Link to="/"> Home Page</Link>
-              <Link to="/createpost"> Create A Post</Link>
-              {!authState.status && (
+              {!authState.status ? (
                 <>
                   <Link to="/login"> Login</Link>
                   <Link to="/registration"> Registration</Link>
+                </>
+              ) : (
+                <>
+                  <Link to="/"> Home Page</Link>
+                  <Link to="/createpost"> Create A Post</Link>               
                 </>
               )}
             </div>
@@ -71,6 +75,7 @@ function App() {
             <Route path="/post/:id"element={<Post/>} />
             <Route path="/registration" element={<Registration/>} />
             <Route path="/login" element={<Login/>} />
+            <Route path="/profile/:id" element={<Profile/>} />
             <Route path="*" element={<PageNotFound/>} />
           </Routes>
         </Router>
