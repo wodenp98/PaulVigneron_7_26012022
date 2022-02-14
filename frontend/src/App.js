@@ -13,6 +13,7 @@ import Login from "./pages/Login";
 import PageNotFound from "./pages/PageNotFound";
 import Profile from "./pages/Profile"
 import ChangePassword from "./pages/ChangePassword"
+import LogoutIcon from '@mui/icons-material/Logout';
 import { AuthContext } from "./helpers/AuthContext";
 import { useState, useEffect } from "react";
 import axios from "axios";
@@ -71,7 +72,10 @@ function App() {
             </div>
             <div className="loggedInContainer">
               <h1>{authState.username} </h1>
-              {authState.status && <button onClick={logout}> Logout</button>}
+              {authState.status && 
+               <LogoutIcon 
+               onClick={logout} 
+               />}
             </div>
           </div>
           <Routes>
