@@ -1,8 +1,4 @@
-import './Styles/App.css'
-import './Styles/Navbar.css'
-import './Styles/CreatePost.css'
-import './Styles/Post.css'
-import './Styles/Login.css'
+import './Styles/main.css'
 import React from "react";
 import { BrowserRouter as Router, Route, Link, Routes } from "react-router-dom";
 import Home from "./pages/Home";
