@@ -27,6 +27,11 @@
   display: grid;
   place-items: center;
   margin-top: 25px;
+  button {
+    background-color: $color-primary;
+    color: $color-bgtxt;
+    cursor: pointer;
+  }
 }
 
 .addCommentContainer input,
@@ -35,11 +40,6 @@ button {
   height: 50px;
   border-radius: 8px;
   border: none;
-}
-
-.addCommentContainer button {
-  background-color: $color-primary;
-  color: white;
 }
 
 .addCommentContainer input {
@@ -77,4 +77,22 @@ button {
 
 #individual .body {
   font-size: 25px;
+}
+
+#individual .footer {
+  display: flex;
+  justify-content: space-between;
+}
+.comment {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.deleteIcon {
+  margin-right: 30px;
+  :hover {
+    color: red;
+    cursor: pointer;
+  }
 }

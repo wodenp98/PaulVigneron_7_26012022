@@ -152,7 +152,7 @@ body {
   padding: 20px;
   margin: 40px;
   color: white;
-  background-color: #37527c;
+  background-color: #6e88b3;
   border: 5px solid #112443;
   border-radius: 5px;
 }
@@ -171,14 +171,14 @@ body {
   margin-top: 15px;
   height: 40px;
   border: none;
-  background-color: #6e88b3;
+  background-color: #112443;
   border-radius: 5px;
   color: white;
 }
 
 .formContainer button:hover {
   cursor: pointer;
-  background-color: #112443;
+  background-color: #37527c;
 }
 
 span {
@@ -244,6 +244,11 @@ button {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+}
+
+.navbar .links img {
+  width: 40px;
+  height: 40px;
 }
 
 .navbar .loggedInContainer {
@@ -335,17 +340,18 @@ a {
   margin-top: 25px;
 }
 
+.rightSide .addCommentContainer button {
+  background-color: #112443;
+  color: white;
+  cursor: pointer;
+}
+
 .addCommentContainer input,
 button {
   width: 200px;
   height: 50px;
   border-radius: 8px;
   border: none;
-}
-
-.addCommentContainer button {
-  background-color: #112443;
-  color: white;
 }
 
 .addCommentContainer input {
@@ -392,6 +398,36 @@ button {
 
 #individual .body {
   font-size: 25px;
+}
+
+#individual .footer {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.comment {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.deleteIcon {
+  margin-right: 30px;
+}
+
+.deleteIcon :hover {
+  color: red;
+  cursor: pointer;
 }
 
 .basicInfo {

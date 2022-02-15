@@ -2,6 +2,7 @@ import React, { useEffect, useState, useContext } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { AuthContext } from "../helpers/AuthContext";
+import BackspaceIcon from '@mui/icons-material/Backspace';
 
 function Post() {
   let { id } = useParams();
@@ -134,14 +135,11 @@ function Post() {
           <div className="footer">
             {postObject.username}
             {authState.username === postObject.username && (
-              <button
-                onClick={() => {
-                  deletePost(postObject.id);
-                }}
-              >
-                {" "}
-                Delete Post
-              </button>
+              <BackspaceIcon className="deleteIcon"
+              onClick={() => {
+                deletePost(postObject.id);
+              }}
+              />
             )}
           </div>
         </div>
@@ -163,16 +161,15 @@ function Post() {
           {comments.map((comment, key) => {
             return (
               <div key={key} className="comment">
-                <label>{comment.username} : </label>
-                {comment.commentBody}
+                <div>
+                  <label>{comment.username} : </label>
+                  {comment.commentBody}
+                </div>
                 {authState.username === comment.username && (
-                  <button
-                    onClick={() => {
-                      deleteComment(comment.id);
-                    }}
-                  >
-                    X
-                  </button>
+                  <BackspaceIcon className="deleteIcon"
+                  onClick={() => {
+                    deleteComment(comment.id);
+                  }} />
                 )}
               </div>
             );

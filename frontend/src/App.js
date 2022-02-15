@@ -13,6 +13,7 @@ import LogoutIcon from '@mui/icons-material/Logout';
 import { AuthContext } from "./helpers/AuthContext";
 import { useState, useEffect } from "react";
 import axios from "axios";
+import Groupomania from "./groupomania.png";
 
 
 function App() {
@@ -57,12 +58,16 @@ function App() {
             <div className="links">
               {!authState.status ? (
                 <>
-                  <Link to="/login"> Login</Link>
+                  <Link to="/login"> 
+                    <img  src={ Groupomania } alt="Logo de Groupomania" className='Logo'/>
+                  </Link>
                   <Link to="/registration"> Registration</Link>
                 </>
               ) : (
                 <>
-                  <Link to="/"> Home Page</Link>
+                  <Link to="/"> 
+                    <img  src={ Groupomania } alt="Logo de Groupomania" className='Logo'/>
+                  </Link>
                   <Link to="/createpost"> Create A Post</Link>               
                 </>
               )}
