@@ -24,6 +24,7 @@ router.get("/byuserId/:id", async (req, res) => {
   const listOfPosts = await Posts.findAll({
     where: { UserId: id },
     include: [Likes],
+    order: [['id', 'DESC']],
   });
   res.json(listOfPosts);
 });
