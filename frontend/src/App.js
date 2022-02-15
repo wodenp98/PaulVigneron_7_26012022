@@ -1,8 +1,4 @@
-import './Styles/App.css'
-import './Styles/Navbar.css'
-import './Styles/CreatePost.css'
-import './Styles/Post.css'
-import './Styles/Login.css'
+import './sass/main.css'
 import React from "react";
 import { BrowserRouter as Router, Route, Link, Routes } from "react-router-dom";
 import Home from "./pages/Home";
@@ -17,6 +13,7 @@ import LogoutIcon from '@mui/icons-material/Logout';
 import { AuthContext } from "./helpers/AuthContext";
 import { useState, useEffect } from "react";
 import axios from "axios";
+import Groupomania from "./groupomania.png";
 
 
 function App() {
@@ -50,6 +47,7 @@ function App() {
   const logout = () => {
     localStorage.removeItem("accessToken");
     setAuthState({ username: "", id: 0, status: false });
+    window.location.reload()
   };
 
   return (
@@ -60,12 +58,16 @@ function App() {
             <div className="links">
               {!authState.status ? (
                 <>
-                  <Link to="/login"> Login</Link>
+                  <Link to="/login"> 
+                    <img  src={ Groupomania } alt="Logo de Groupomania" className='Logo'/>
+                  </Link>
                   <Link to="/registration"> Registration</Link>
                 </>
               ) : (
                 <>
-                  <Link to="/"> Home Page</Link>
+                  <Link to="/"> 
+                    <img  src={ Groupomania } alt="Logo de Groupomania" className='Logo'/>
+                  </Link>
                   <Link to="/createpost"> Create A Post</Link>               
                 </>
               )}
@@ -73,8 +75,8 @@ function App() {
             <div className="loggedInContainer">
               <h1>{authState.username} </h1>
               {authState.status && 
-               <LogoutIcon 
-               onClick={logout} 
+               <LogoutIcon className='LogoutIcon'
+               onClick={logout}    
                />}
             </div>
           </div>

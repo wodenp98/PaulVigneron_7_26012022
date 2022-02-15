@@ -14,7 +14,9 @@
   height: auto;
   padding: 20px;
   margin: 40px;
-  border: 5px solid dodgerblue;
+  color: $color-bgtxt;
+  background-color: $color-tertiary;
+  border: 5px solid $color-primary;
   border-radius: 5px;
 }
 
@@ -32,14 +34,14 @@
   margin-top: 15px;
   height: 40px;
   border: none;
-  background-color: lightskyblue;
+  background-color: $color-primary;
   border-radius: 5px;
   color: white;
 }
 
 .formContainer button:hover {
   cursor: pointer;
-  background-color: dodgerblue;
+  background-color: $color-secondary;
 }
 
 span {

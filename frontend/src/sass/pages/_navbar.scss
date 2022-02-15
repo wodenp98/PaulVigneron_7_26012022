@@ -1,16 +1,21 @@
 .navbar {
   width: 100%;
   height: 70px;
-  background-color: dodgerblue;
+  background-color: $color-primary;
   display: flex;
   align-items: center;
   font-family: Arial, Helvetica, sans-serif;
 }
+
 .navbar .links {
   flex: 50%;
   height: 100%;
   display: flex;
   align-items: center;
+  img {
+    width: 40px;
+    height: 40px;
+  }
 }
 
 .navbar .loggedInContainer {
@@ -23,20 +28,22 @@
 a {
   margin-left: 20px;
   text-decoration: none;
-  color: white;
+  color: $color-bgtxt;
 }
 
-.navbar button {
+.LogoutIcon {
   width: 100px;
   height: 40px;
   cursor: pointer;
-  margin-right: 10px;
-  background-color: white;
+  margin-right: 20px;
+  margin-left: 10px;
+  color: $color-bgtxt;
 }
 
 .navbar h1 {
   text-align: right;
-  margin-right: 10px;
-  color: white;
+  margin-right: 20px;
+  color: $color-bgtxt;
   font-weight: lighter;
+  font-size: 25px;
 }
