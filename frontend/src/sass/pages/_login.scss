@@ -1,5 +1,6 @@
 .loginContainer {
   display: flex;
+  color: $color-bgtxt;
   align-items: center;
   flex-direction: column;
   width: 100%;
@@ -17,10 +18,10 @@ button {
 }
 
 .loginContainer button {
-  background-color: dodgerblue;
-  color: white;
+  background-color: $color-primary;
+  color: $color-bgtxt;
 }
 
 .loginContainer input {
-  border: 2px solid dodgerblue;
+  border: 2px solid $color-primary;
 }

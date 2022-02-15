@@ -16,6 +16,7 @@
 body {
   margin: 0;
   padding: 0;
+  background-color: #37527c;
 }
 
 .post {
@@ -32,6 +33,7 @@ body {
   margin-top: 50px;
   border: 1px solid lightgray;
   font-family: Arial, Helvetica, sans-serif;
+  background-color: #6e88b3;
   -webkit-box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
           box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
 }
@@ -46,8 +48,10 @@ body {
   -webkit-box-flex: 20%;
       -ms-flex: 20%;
           flex: 20%;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
   border-bottom: 1px solid lightgray;
-  background-color: dodgerblue;
+  background-color: #112443;
   display: -ms-grid;
   display: grid;
   place-content: center;
@@ -60,7 +64,9 @@ body {
           flex: 60%;
   display: -ms-grid;
   display: grid;
+  border-radius: 20px;
   place-content: center;
+  color: white;
 }
 
 .post .footer {
@@ -75,7 +81,7 @@ body {
       -ms-flex-align: center;
           align-items: center;
   padding-left: 15px;
-  background-color: dodgerblue;
+  background-color: #112443;
   color: white;
   border-bottom-left-radius: 10px;
   border-bottom-right-radius: 10px;
@@ -145,7 +151,9 @@ body {
   height: auto;
   padding: 20px;
   margin: 40px;
-  border: 5px solid dodgerblue;
+  color: white;
+  background-color: #37527c;
+  border: 5px solid #112443;
   border-radius: 5px;
 }
 
@@ -163,14 +171,14 @@ body {
   margin-top: 15px;
   height: 40px;
   border: none;
-  background-color: lightskyblue;
+  background-color: #6e88b3;
   border-radius: 5px;
   color: white;
 }
 
 .formContainer button:hover {
   cursor: pointer;
-  background-color: dodgerblue;
+  background-color: #112443;
 }
 
 span {
@@ -181,6 +189,7 @@ span {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  color: white;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
@@ -203,18 +212,18 @@ button {
 }
 
 .loginContainer button {
-  background-color: dodgerblue;
+  background-color: #112443;
   color: white;
 }
 
 .loginContainer input {
-  border: 2px solid dodgerblue;
+  border: 2px solid #112443;
 }
 
 .navbar {
   width: 100%;
   height: 70px;
-  background-color: dodgerblue;
+  background-color: #112443;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -259,19 +268,21 @@ a {
   color: white;
 }
 
-.navbar button {
+.LogoutIcon {
   width: 100px;
   height: 40px;
   cursor: pointer;
-  margin-right: 10px;
-  background-color: white;
+  margin-right: 20px;
+  margin-left: 10px;
+  color: white;
 }
 
 .navbar h1 {
   text-align: right;
-  margin-right: 10px;
+  margin-right: 20px;
   color: white;
   font-weight: lighter;
+  font-size: 25px;
 }
 
 .postPage {
@@ -333,12 +344,12 @@ button {
 }
 
 .addCommentContainer button {
-  background-color: dodgerblue;
+  background-color: #112443;
   color: white;
 }
 
 .addCommentContainer input {
-  border: 2px solid dodgerblue;
+  border: 2px solid #112443;
 }
 
 .rightSide .listOfComments {
@@ -362,6 +373,8 @@ button {
   width: 70%;
   height: auto;
   padding: 30px;
+  color: white;
+  background-color: #6e88b3;
   border: 1px solid lightgray;
   border-radius: 5px;
   margin-top: 20px;
@@ -379,5 +392,42 @@ button {
 
 #individual .body {
   font-size: 25px;
+}
+
+.basicInfo {
+  color: white;
+}
+
+.password {
+  color: white;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.password input {
+  margin: 15px;
+  border-radius: 5px;
+}
+
+.password button {
+  width: 150px;
+  height: 30px;
+  margin-left: 15px;
+}
+
+.pageNotFound {
+  color: white;
+}
+
+.pageNotFound a {
+  text-decoration: underline;
 }
 /*# sourceMappingURL=main.css.map */

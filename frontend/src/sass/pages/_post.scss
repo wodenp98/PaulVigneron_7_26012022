@@ -38,12 +38,12 @@ button {
 }
 
 .addCommentContainer button {
-  background-color: dodgerblue;
+  background-color: $color-primary;
   color: white;
 }
 
 .addCommentContainer input {
-  border: 2px solid dodgerblue;
+  border: 2px solid $color-primary;
 }
 
 .rightSide .listOfComments {
@@ -58,6 +58,8 @@ button {
   width: 70%;
   height: auto;
   padding: 30px;
+  color: $color-bgtxt;
+  background-color: $color-tertiary;
   border: 1px solid lightgray;
   border-radius: 5px;
   margin-top: 20px;

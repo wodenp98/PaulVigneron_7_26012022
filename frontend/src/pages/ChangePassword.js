@@ -27,7 +27,7 @@ function ChangePassword() {
   };
 
   return (
-    <div>
+    <div className="password">
       <h1>Change Your Password</h1>
       <input
         type="text"

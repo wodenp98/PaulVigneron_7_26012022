@@ -1,0 +1,21 @@
+.basicInfo {
+  color: $color-bgtxt;
+}
+
+.password {
+  color: $color-bgtxt;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  input {
+    margin: 15px;
+    border-radius: 5px;
+  }
+
+  button {
+    width: 150px;
+    height: 30px;
+    margin-left: 15px;
+  }
+}
