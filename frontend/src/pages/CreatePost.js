@@ -4,6 +4,7 @@ import * as Yup from 'yup';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { AuthContext } from "../helpers/AuthContext";
+import ImageIcon from '@mui/icons-material/Image';
 
 function CreatePost() {
     // eslint-disable-next-line
@@ -63,6 +64,12 @@ function CreatePost() {
             name="postText" 
             placeholder="(Ex. Post...)" 
             />
+            <ImageIcon  
+                onclick={() => {
+                    
+                }}
+            /> 
+
 
             <button type='submit'>Create Post</button>
         </Form>
