@@ -49,6 +49,7 @@ function Post() {
           setNewComment("");
         }
       });
+      window.location.reload()
   };
 
   const deleteComment = (id) => {
