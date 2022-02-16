@@ -1,9 +1,17 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import axios from "axios";
+import { useNavigate } from 'react-router-dom';
 
 function ChangePassword() {
   const [oldPassword, setOldPassword] = useState("");
   const [newPassword, setNewPassword] = useState("");
+  let navigate = useNavigate()
+  
+  useEffect(() => {
+    if (!localStorage.getItem("accessToken")) {
+      navigate('/login')
+    } 
+  })
 
   const changePassword = () => {
     axios

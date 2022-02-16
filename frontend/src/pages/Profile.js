@@ -11,6 +11,10 @@ function Profile() {
   const { authState, setAuthState } = useContext(AuthContext);
 
   useEffect(() => {
+
+    if (!localStorage.getItem('accessToken')) {
+      navigate('/login')
+    } else {
     axios.get(`http://localhost:3001/auth/basicinfo/${id}`).then((response) => {
       setUsername(response.data.username);
     });
@@ -18,6 +22,9 @@ function Profile() {
     axios.get(`http://localhost:3001/posts/byuserId/${id}`).then((response) => {
       setListOfPosts(response.data);
     });
+
+    }
+  // eslint-disable-next-line
   }, [id]);
 
   const deleteAccount = () => {

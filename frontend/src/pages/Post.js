@@ -14,6 +14,11 @@ function Post() {
   let navigate = useNavigate();
 
   useEffect(() => {
+    
+    if (!localStorage.getItem('accessToken')) {
+      navigate('/login')
+    } else {
+
     axios.get(`http://localhost:3001/posts/byId/${id}`).then((response) => {
       setPostObject(response.data);
     });
@@ -21,7 +26,10 @@ function Post() {
     axios.get(`http://localhost:3001/comments/${id}`).then((response) => {
       setComments(response.data);
     });
-  }, [id]);
+
+   }
+   // eslint-disable-next-line
+}, [id]);
 
   const addComment = () => {
     axios
