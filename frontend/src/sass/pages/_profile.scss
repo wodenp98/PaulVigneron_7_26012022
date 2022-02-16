@@ -1,5 +1,14 @@
 .basicInfo {
   color: $color-bgtxt;
+  .changePassword:hover {
+    background-color: $color-primary;
+    color: $color-bgtxt;
+  }
+
+  .deleteButton:hover {
+    background-color: red;
+    color: $color-bgtxt;
+  }
 }
 
 .password {

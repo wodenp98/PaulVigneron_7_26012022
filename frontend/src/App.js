@@ -23,6 +23,8 @@ function App() {
     status: false,
   });
 
+
+
   useEffect(() => {
     axios
       .get("http://localhost:3001/auth/auth", {
@@ -50,6 +52,7 @@ function App() {
     window.location.reload()
   };
 
+  
   return (
     <div className="App">
       <AuthContext.Provider value={{ authState, setAuthState }}>
@@ -73,7 +76,10 @@ function App() {
               )}
             </div>
             <div className="loggedInContainer">
-              <h1>{authState.username} </h1>
+              
+                <h1>{authState.username}</h1>
+    
+
               {authState.status && 
                <LogoutIcon className='LogoutIcon'
                onClick={logout}    

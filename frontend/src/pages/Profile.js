@@ -47,7 +47,7 @@ function Profile() {
         <h1> Username: {username} </h1>
         {authState.username === username && (
         <>
-          <button
+          <button className="changePassword"
             onClick={() => {
               navigate("/changepassword");
             }}
@@ -56,7 +56,7 @@ function Profile() {
           </button>
 
           
-          <button
+          <button className="deleteButton"
             onClick={() => {
               deleteAccount(id);
             }}
