@@ -18,6 +18,11 @@
   background-color: $color-tertiary;
   border: 5px solid $color-primary;
   border-radius: 5px;
+
+  @media (max-width: 768px) {
+    width: 70vw;
+    height: 50vh;
+  }
 }
 
 .formContainer #inputCreatePost {

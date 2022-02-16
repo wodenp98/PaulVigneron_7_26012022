@@ -1,13 +1,20 @@
 .basicInfo {
   color: $color-bgtxt;
   .changePassword:hover {
-    background-color: $color-tertiary;
+    background-color: $color-primary;
     color: $color-bgtxt;
   }
 
   .deleteButton:hover {
     background-color: red;
     color: $color-bgtxt;
+  }
+
+  @media (max-width: 768px) {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
   }
 }
 
