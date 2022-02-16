@@ -1,7 +1,7 @@
 .basicInfo {
   color: $color-bgtxt;
   .changePassword:hover {
-    background-color: $color-primary;
+    background-color: $color-tertiary;
     color: $color-bgtxt;
   }
 
@@ -13,10 +13,10 @@
 
 .password {
   color: $color-bgtxt;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-
+  margin-top: 50px;
+  h1 {
+    margin-bottom: 30px;
+  }
   input {
     margin: 15px;
     border-radius: 5px;
@@ -27,4 +27,18 @@
     height: 30px;
     margin-left: 15px;
   }
+}
+
+.borderPassword {
+  border: 10px solid $color-primary;
+  border-radius: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: $color-tertiary;
+}
+
+.validateChanges:hover {
+  background-color: green;
+  color: $color-bgtxt;
 }
