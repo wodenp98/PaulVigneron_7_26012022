@@ -3,6 +3,7 @@ const router = express.Router();
 const { Posts, Likes } = require("../models");
 
 const { validateToken } = require("../middlewares/AuthMiddleware");
+const { uploadImage } = require("../middlewares/multer")
 
 router.get("/", validateToken, async (req, res) => {
   const listOfPosts = await Posts.findAll({ 
@@ -29,10 +30,11 @@ router.get("/byuserId/:id", async (req, res) => {
   res.json(listOfPosts);
 });
 
-router.post("/", validateToken, async (req, res) => {
+router.post("/", validateToken, uploadImage, async (req, res) => {
   const post = req.body;
   post.username = req.user.username;
   post.UserId = req.user.id;
+  post.imageUrl = req.file.filename
   await Posts.create(post);
   res.json(post);
 });
