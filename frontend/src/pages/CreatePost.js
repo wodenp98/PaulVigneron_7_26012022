@@ -64,7 +64,7 @@ function CreatePost() {
             name="postText" 
             placeholder="(Ex. Post...)" 
             />
-
+            <input type="file" />
             <button type='submit'>Create Post</button>
         </Form>
     </Formik>
