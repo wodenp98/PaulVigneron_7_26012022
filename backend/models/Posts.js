@@ -14,10 +14,10 @@ module.exports = (sequelize, DataTypes) => {
 			allowNull: false,
 		},
 
-		// image: {
-		// 	type: DataTypes.STRING,
-		// 	allowNull: false,
-		// },
+		imageUrl: {
+			type: DataTypes.STRING,
+			allowNull: false,
+		},
 	})
 
 	Posts.associate = (models) => {

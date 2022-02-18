@@ -77,6 +77,7 @@ function Home() {
               }}
             >
               {value.postText}
+              {value.imageUrl != null && <img src={value.imageUrl} className="imagePost" alt="" />}
             </div>
             <div className="footer">
               <div className="username"><Link to ={`/profile/${value.UserId}`}>{value.username}</Link>
