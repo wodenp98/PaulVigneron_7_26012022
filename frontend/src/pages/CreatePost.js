@@ -1,15 +1,12 @@
-import React, { useContext, useEffect, useState }from 'react';
+import React, { useEffect, useState }from 'react';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
-import { AuthContext } from "../helpers/AuthContext";
+
 
 
 function CreatePost() {
-    // eslint-disable-next-line
-    const { authState } = useContext(AuthContext);
-    const [file, setFile] = useState(null);
 
     let navigate = useNavigate();
     
@@ -23,13 +20,15 @@ function CreatePost() {
             navigate('/login')
         }
         // eslint-disable-next-line
-    }, [])
+    }, [navigate])
 
     const validationSchema = Yup.object().shape({
         title: Yup.string().required("You must input a Title!"),
         postText: Yup.string().required(),
 
     })
+
+    const [file, setFile] = useState(null);
 
     const onSubmit = (data) => {  
         const formData = new FormData()

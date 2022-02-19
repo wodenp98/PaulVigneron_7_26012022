@@ -11,7 +11,7 @@ function ChangePassword() {
     if (!localStorage.getItem("accessToken")) {
       navigate('/login')
     } 
-  })
+  }, [navigate])
 
   const changePassword = () => {
     axios
@@ -30,6 +30,9 @@ function ChangePassword() {
       .then((response) => {
         if (response.data.error) {
           alert(response.data.error);
+        } else {
+          alert("mot de passe changé")
+          navigate('/')
         }
       });
   };

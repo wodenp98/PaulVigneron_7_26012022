@@ -25,8 +25,8 @@ function Home() {
       }));
     });
   }
-  // eslint-disable-next-line
-  }, []);
+
+  }, [navigate]);
 
   const likeAPost = (postId) => {
     axios
