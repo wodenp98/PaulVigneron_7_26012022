@@ -15,12 +15,11 @@ module.exports = (sequelize, DataTypes) => {
 			type: DataTypes.TEXT,
 			allowNull: false,
 		},
-		username: {
+		imageUrl: {
 			type: DataTypes.STRING,
 			allowNull: false,
 		},
-
-		imageUrl: {
+		username: {
 			type: DataTypes.STRING,
 			allowNull: false,
 		},
