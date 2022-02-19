@@ -1,15 +1,14 @@
-import React, { useContext } from "react";
+import React from "react";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import ThumbUpAltIcon from '@mui/icons-material/ThumbUpAlt'
-import { AuthContext } from "../helpers/AuthContext";
+
 
 function Home() {
   const [listOfPosts, setListOfPosts] = useState([]);
   const [likedPosts, setLikedPosts] = useState([])
-  // eslint-disable-next-line
-  const { authState } = useContext(AuthContext);
+  
   let navigate = useNavigate();
 
   useEffect(() => {
