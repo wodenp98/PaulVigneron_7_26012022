@@ -21,7 +21,6 @@ body {
 
 .post {
   width: 400px;
-  height: 300px;
   border-radius: 10px;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -55,6 +54,7 @@ body {
   -webkit-box-flex: 20%;
       -ms-flex: 20%;
           flex: 20%;
+  padding: 10px;
   border-top-left-radius: 10px;
   border-top-right-radius: 10px;
   border-bottom: 1px solid lightgray;
@@ -76,10 +76,15 @@ body {
   color: white;
 }
 
+.post .body .imagePost {
+  width: 100%;
+}
+
 .post .footer {
   -webkit-box-flex: 20%;
       -ms-flex: 20%;
           flex: 20%;
+  padding: 10px;
   border-top: 1px solid lightgray;
   display: -webkit-box;
   display: -ms-flexbox;
