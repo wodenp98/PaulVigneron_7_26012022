@@ -6,7 +6,7 @@ module.exports = (sequelize, DataTypes) => {
 			primaryKey: true,
 			autoIncrement: true
 		},
-		
+
 		title: {
 			type: DataTypes.STRING,
 			allowNull: false,
@@ -17,7 +17,7 @@ module.exports = (sequelize, DataTypes) => {
 		},
 		imageUrl: {
 			type: DataTypes.STRING,
-			allowNull: false,
+			allowNull: true,
 		},
 		username: {
 			type: DataTypes.STRING,
@@ -27,12 +27,12 @@ module.exports = (sequelize, DataTypes) => {
 
 	Posts.associate = (models) => {
 		Posts.hasMany(models.Comments, {
-		  onDelete: "cascade",
+			onDelete: "cascade",
 		});
 
 		Posts.hasMany(models.Likes, {
 			onDelete: "cascade",
-		  });
-	  };
+		});
+	};
 	return Posts
 }
