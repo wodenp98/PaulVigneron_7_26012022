@@ -16,29 +16,38 @@ router.post("/", async (req, res) => {
   });
 });
 
-router.post("/login", async (req, res) => {
-  const { username, password } = req.body;
+router.post('/login', async (req, res) => {
+	const { username, password } = req.body
+	const user = await Users.findOne({ where: { username: username } }) 
 
-  const user = await Users.findOne({ where: { username: username } });
+	if (!user) { 
+		res.json({ error: "L'utilisateur n'existe pas !" })
+	} else {
+		bcrypt.compare(password, user.password).then(async (match) => { 
+			if (!match) { 
+				res.json({ error: 'Mauvaise combination' }) 
+			} else {
+				
+				const accessToken = sign(
+					{ username: user.username, id: user.id }, 
+					"importantsecret" 
+				)
+				
+				res.json({ token: accessToken, username: username, id: user.id })
+			}
+		})
+	}
+})
 
-  if (!user) res.json({ error: "User Doesn't Exist" });
+router.get('/verify', validateToken, async (req, res) => {
+	const { username } = req.user 
 
-  bcrypt.compare(password, user.password).then(async (match) => {
-    if (!match) res.json({ error: "Wrong Username And Password Combination" });
+	const user = await Users.findOne({ where: { username: username } }) 
 
-    const accessToken = sign(
-      { username: user.username, id: user.id },
-      "importantsecret"
-    );
-    res.json({ token: accessToken, username: username, id: user.id });
-  });
-});
+	res.json(req.user) 
+})
 
-router.get("/auth", validateToken, (req, res) => {
-  res.json(req.user);
-});
-
-router.get("/basicinfo/:id", async (req, res) => {
+router.get("/basicInfo/:id", async (req, res) => {
   const id = req.params.id;
 
   const basicInfo = await Users.findByPk(id, {
@@ -48,22 +57,26 @@ router.get("/basicinfo/:id", async (req, res) => {
   res.json(basicInfo);
 });
 
-router.put("/changepassword", validateToken, async (req, res) => {
-  const { oldPassword, newPassword } = req.body;
-  const user = await Users.findOne({ where: { username: req.user.username } });
+router.put('/changepassword', validateToken, async (req, res) => {
+	const { oldPassword, newPassword } = req.body 
 
-  bcrypt.compare(oldPassword, user.password).then(async (match) => {
-    if (!match) res.json({ error: "Wrong Password Entered!" });
+	const user = await Users.findOne({ where: { username: req.user.username } })
 
-    bcrypt.hash(newPassword, 10).then((hash) => {
-      Users.update(
-        { password: hash },
-        { where: { username: req.user.username } }
-      );
-      res.json("SUCCESS");
-    });
-  });
-});
+	bcrypt.compare(oldPassword, user.password).then(async (match) => {
+		if (!match)  { 
+			res.json({ error: 'Mauvais mot de passe' })
+		} else {
+
+			bcrypt.hash(newPassword, 10).then((hash) => {
+				Users.update( 
+					{ password: hash },
+					{ where: { username: req.user.username } }
+				)
+				res.json('Mot de passe changé')
+			})
+		}
+	})
+})
 
 
 router.delete('/deleteUser/:id', validateToken, async (req, res) => {

@@ -1,15 +1,14 @@
-import React, { useContext } from "react";
+import React from "react";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import ThumbUpAltIcon from '@mui/icons-material/ThumbUpAlt'
-import { AuthContext } from "../helpers/AuthContext";
+
 
 function Home() {
   const [listOfPosts, setListOfPosts] = useState([]);
   const [likedPosts, setLikedPosts] = useState([])
-  // eslint-disable-next-line
-  const { authState } = useContext(AuthContext);
+  
   let navigate = useNavigate();
 
   useEffect(() => {
@@ -26,8 +25,8 @@ function Home() {
       }));
     });
   }
-  // eslint-disable-next-line
-  }, []);
+
+  }, [navigate]);
 
   const likeAPost = (postId) => {
     axios
@@ -77,6 +76,7 @@ function Home() {
               }}
             >
               {value.postText}
+              {value.imageUrl != null && <img src={value.imageUrl} className="imagePost" alt="" />}
             </div>
             <div className="footer">
               <div className="username"><Link to ={`/profile/${value.UserId}`}>{value.username}</Link>

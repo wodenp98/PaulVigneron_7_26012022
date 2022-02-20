@@ -25,7 +25,7 @@ function Profile() {
 
     }
   // eslint-disable-next-line
-  }, [id]);
+  }, [navigate, id]);
 
   const deleteAccount = () => {
 		axios
@@ -33,10 +33,16 @@ function Profile() {
 				headers: { accessToken: localStorage.getItem('accessToken') },
 			})
 			.then(() => {
-				localStorage.removeItem('accessToken')
-				setAuthState({ username: '', id: 0, status: false, isAdmin: false })
-				alert('Compte supprimé')
+        alert('account delete')
+
+        // eslint-disable-next-line
+        if(authState.id != 1) {
+        localStorage.removeItem('accessToken')
+				setAuthState({ username: '', id: 0, status: false })
 				navigate('/login')
+        } else {
+          navigate('/')
+        }	
 			})
 	}
 
@@ -44,7 +50,7 @@ function Profile() {
   return (
     <div className="profilePageContainer">
       <div className="basicInfo">
-        <h1> Username: {username} </h1>
+        <h1> {username} </h1>
         {authState.username === username && (
         <>
           <button className="changePassword"
@@ -78,6 +84,7 @@ function Profile() {
                 }}
               >
                 {value.postText}
+                {value.imageUrl && <img src={`../${value.imageUrl}`} className="imagePost" alt="" />}
               </div>
               <div className="footer">
                 <div className="username">{value.username}</div>

@@ -29,10 +29,12 @@ function Post() {
 
    }
    // eslint-disable-next-line
-}, [id]);
+}, [navigate, id]);
 
   const addComment = () => {
-    axios
+    // eslint-disable-next-line
+    if (newComment != "") { 
+      axios
       .post(
         "http://localhost:3001/comments",
         {
@@ -52,12 +54,16 @@ function Post() {
           const commentToAdd = {
             commentBody: newComment,
             username: response.data.username,
+            id: response.data.id,
           };
           setComments([...comments, commentToAdd]);
           setNewComment("");
         }
       });
-      window.location.reload()
+      
+
+    }
+    
   };
 
   const deleteComment = (id) => {
@@ -88,33 +94,40 @@ function Post() {
   const editPost = (option) => {
     if (option === "title") {
       let newTitle = prompt("Enter New Title:");
-      axios.put(
-        "http://localhost:3001/posts/title",
-        {
-          newTitle: newTitle,
-          id: id,
-        },
-        {
-          headers: { accessToken: localStorage.getItem("accessToken") },
-        }
-      );
-
-      setPostObject({ ...postObject, title: newTitle });
+      // eslint-disable-next-line
+      if (newTitle != undefined && newTitle != "") {
+        axios.put(
+          "http://localhost:3001/posts/title",
+          {
+            newTitle: newTitle,
+            id: id,
+          },
+          {
+            headers: { accessToken: localStorage.getItem("accessToken") },
+          }
+        );
+  
+        setPostObject({ ...postObject, title: newTitle });
+      }
     } else {
-      let newPostText = prompt("Enter New Text:");
-      axios.put(
-        "http://localhost:3001/posts/postText",
-        {
-          newText: newPostText,
-          id: id,
-        },
-        {
-          headers: { accessToken: localStorage.getItem("accessToken") },
-        }
-      );
+      let newPostText = prompt("Enter New Text:")
+      // eslint-disable-next-line
+      if (newPostText != undefined && newPostText != "") {
+        axios.put(
+          "http://localhost:3001/posts/postText",
+          {
+            newText: newPostText,
+            id: id,
+          },
+          {
+            headers: { accessToken: localStorage.getItem("accessToken") },
+          }
+        );
+  
+        setPostObject({ ...postObject, postText: newPostText });
+      }
 
-      setPostObject({ ...postObject, postText: newPostText });
-    }
+      }
   };
 
   return (
@@ -140,6 +153,7 @@ function Post() {
             }}
           >
             {postObject.postText}
+            {postObject.imageUrl && <img src={`../${postObject.imageUrl}`} className="imagePost" alt="" /> }
           </div>
           <div className="footer">
             {postObject.username}
