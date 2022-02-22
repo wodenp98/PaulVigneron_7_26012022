@@ -22,6 +22,7 @@ function Login() {
               username: response.data.username,
               id: response.data.id,
               status: true,
+              userRole: response.data.userRole,
             });
             navigate("/");
           }

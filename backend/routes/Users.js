@@ -33,7 +33,7 @@ router.post('/login', async (req, res) => {
 					"importantsecret" 
 				)
 				
-				res.json({ token: accessToken, username: username, id: user.id })
+				res.json({ token: accessToken, username: username, id: user.id, userRole: user.userRole })
 			}
 		})
 	}
@@ -44,6 +44,11 @@ router.get('/verify', validateToken, async (req, res) => {
 
 	const user = await Users.findOne({ where: { username: username } }) 
 
+	if (!req.user) {
+		user.userRole = null
+	} else {
+		req.userRole = false
+	}
 	res.json(req.user) 
 })
 
