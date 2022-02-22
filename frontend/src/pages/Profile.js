@@ -37,9 +37,9 @@ function Profile() {
 
         // eslint-disable-next-line
         if(authState.id != 1) {
-        localStorage.removeItem('accessToken')
-				setAuthState({ username: '', id: 0, status: false, userRole: false })
-				navigate('/login')
+          localStorage.removeItem('accessToken')
+				  setAuthState({ username: '', id: 0, status: false, isAdmin: false })
+				  navigate('/login')
         } else {
           navigate('/')
         }	
@@ -51,7 +51,7 @@ function Profile() {
     <div className="profilePageContainer">
       <div className="basicInfo">
         <h1> {username} </h1>
-        {((authState.username === username) || (authState.userRole === false)) && (
+        {authState.username === username && (authState.isAdmin === false) && (
         <>
           <button className="changePassword"
             onClick={() => {
@@ -72,7 +72,7 @@ function Profile() {
         </>
         )}
 
-        {(authState.userRole === true) && (
+        {(authState.isAdmin === true) && (
 					<>
 						{authState.username === username && (
 							<button

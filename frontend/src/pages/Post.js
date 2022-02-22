@@ -137,7 +137,7 @@ function Post() {
           <div
             className="title"
             onClick={() => {
-              if ((authState.username === postObject.username) || (authState.userRole === true)) {
+              if ((authState.username === postObject.username)  || (authState.isAdmin === true)) {
                 editPost("title");
               }
             }}
@@ -147,7 +147,7 @@ function Post() {
           <div
             className="body"
             onClick={() => {
-              if ((authState.username === postObject.username) || (authState.userRole === true)) {
+              if ((authState.username === postObject.username)  || (authState.isAdmin === true)) {
                 editPost("body");
               }
             }}
@@ -157,7 +157,7 @@ function Post() {
           </div>
           <div className="footer">
             {postObject.username}
-            {((authState.username === postObject.username) || (authState.userRole === true)) && (
+            {((authState.username === postObject.username)  || (authState.isAdmin === true)) && (
               <BackspaceIcon className="deleteIcon"
               onClick={() => {
                 deletePost(postObject.id);
@@ -188,7 +188,7 @@ function Post() {
                   <label>{comment.username} : </label>
                   {comment.commentBody}
                 </div>
-                {((authState.username === postObject.username) || (authState.userRole === true)) && (
+                {((authState.username === comment.username) || (authState.isAdmin === true)) && (
                   <BackspaceIcon className="deleteIcon"
                   onClick={() => {
                     deleteComment(comment.id);

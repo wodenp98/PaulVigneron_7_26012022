@@ -7,13 +7,19 @@ const { sign } = require("jsonwebtoken");
 
 router.post("/", async (req, res) => {
   const { username, password } = req.body;
-  bcrypt.hash(password, 10).then((hash) => {
-    Users.create({
-      username: username,
-      password: hash,
-    });
-    res.json("SUCCESS");
-  });
+  const user = await Users.findOne({ where : { username : username}})
+
+  if (user ) {
+	  res.json({ error : 'utilisateur existant'})
+  } else {
+	bcrypt.hash(password, 10).then((hash) => {
+		Users.create({
+		  username: username,
+		  password: hash,
+		});
+		res.json("SUCCESS");
+	  });
+  }
 });
 
 router.post('/login', async (req, res) => {
@@ -33,7 +39,7 @@ router.post('/login', async (req, res) => {
 					"importantsecret" 
 				)
 				
-				res.json({ token: accessToken, username: username, id: user.id, userRole: user.userRole })
+				res.json({ token: accessToken, username: username, id: user.id, isAdmin: user.isAdmin })
 			}
 		})
 	}
@@ -44,12 +50,8 @@ router.get('/verify', validateToken, async (req, res) => {
 
 	const user = await Users.findOne({ where: { username: username } }) 
 
-	if (!req.user) {
-		user.userRole = null
-	} else {
-		req.userRole = false
-	}
-	res.json(req.user) 
+	req.user.isAdmin = user.isAdmin
+	res.json(req.user)
 })
 
 router.get("/basicInfo/:id", async (req, res) => {
@@ -85,7 +87,7 @@ router.put('/changepassword', validateToken, async (req, res) => {
 
 
 router.delete('/deleteUser/:id', validateToken, async (req, res) => {
-	const userId = req.user.id
+	const userId = req.params.id
 	await Users.destroy({
 		where: {
 			id: userId,

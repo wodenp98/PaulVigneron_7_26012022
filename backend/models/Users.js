@@ -9,7 +9,7 @@ module.exports = (sequelize, DataTypes) => {
 		allowNull: false,
 	  },
 
-	  userRole: {
+	isAdmin: {
 		type: DataTypes.BOOLEAN,
 		allowNull: false,
 		defaultValue: false,
