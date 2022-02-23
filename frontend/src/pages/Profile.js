@@ -85,7 +85,7 @@ function Profile() {
 							</button>
 						)}
 
-						<button
+						<button className="deleteButton"
 						onClick={() => {
 							deleteAccount(id)
 						}}
