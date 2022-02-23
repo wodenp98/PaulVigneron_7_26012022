@@ -9,6 +9,12 @@ module.exports = (sequelize, DataTypes) => {
 		allowNull: false,
 	  },
 
+	isAdmin: {
+		type: DataTypes.BOOLEAN,
+		allowNull: false,
+		defaultValue: false,
+	  },
+
 	});
   
 	Users.associate = (models) => {

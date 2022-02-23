@@ -21,6 +21,7 @@ function App() {
     username: "",
     id: 0,
     status: false,
+    isAdmin: false,
   });
 
 
@@ -40,6 +41,7 @@ function App() {
             username: response.data.username,
             id: response.data.id,
             status: true,
+            isAdmin: response.data.isAdmin,
           });
         }
       });
@@ -48,7 +50,7 @@ function App() {
 
   const logout = () => {
     localStorage.removeItem("accessToken");
-    setAuthState({ username: "", id: 0, status: false });
+    setAuthState({ username: "", id: 0, status: false, isAdmin: false });
     window.location.reload()
   };
 
