@@ -32,24 +32,24 @@ function Registration() {
         >
 
         <Form className='formContainer'>
-            <label>Username: </label>
+            <label>Pseudo: </label>
             <ErrorMessage name='username' component="span" />
             <Field 
-            id="inputCreatePost" 
+            className="inputCreatePost" 
             name="username" 
-            placeholder="(Ex. John123...)" 
+            placeholder="(Votre pseudo)" 
             />
 
-            <label>Password: </label>
+            <label>Mot de passe: </label>
             <ErrorMessage name='password' component="span" />
             <Field 
             type="password"
-            id="inputCreatePost" 
+            className="inputCreatePost" 
             name="password" 
-            placeholder="(Your Password...)" 
+            placeholder="(Votre mot de passe)" 
             />
 
-            <button type='submit'>Register</button>
+            <button type='submit'>S'inscrire</button>
         </Form>
      </Formik>
     </div>

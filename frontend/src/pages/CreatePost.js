@@ -6,6 +6,7 @@ import { useNavigate } from 'react-router-dom';
 
 
 
+
 function CreatePost() {
 
     let navigate = useNavigate();
@@ -63,12 +64,12 @@ function CreatePost() {
         >
 
         <Form className='formContainer'>
-            <label>Title: </label>
+            <label>Titre: </label>
             <ErrorMessage name='title' component="span" />
             <Field 
             id="inputCreatePost" 
             name="title" 
-            placeholder="(Ex. Title...)" 
+            placeholder="(Ex: Votre Titre)" 
             />
 
             <label>Post: </label>
@@ -76,10 +77,10 @@ function CreatePost() {
             <Field 
             id="inputCreatePost" 
             name="postText" 
-            placeholder="(Ex. Post...)" 
+            placeholder="(Ex: Votre post)" 
             />
-            <input type="file" name="photo" onChange={onInputChange} />
-            <button type='submit'>Create Post</button>
+            <input type="file" name="photo" onChange={onInputChange}/>
+            <button type='submit'>Publier</button>
         </Form>
     </Formik>
     

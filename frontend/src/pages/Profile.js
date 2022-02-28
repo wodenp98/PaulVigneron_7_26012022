@@ -58,7 +58,7 @@ function Profile() {
               navigate("/changepassword");
             }}
           >
-            Change My Password
+            Changez votre mot de passe
           </button>
 
           
@@ -67,7 +67,7 @@ function Profile() {
               deleteAccount(id);
             }}
           >
-            Delete account
+            Supprimer votre compte
           </button>
         </>
         )}
@@ -81,7 +81,7 @@ function Profile() {
 									navigate('/changepassword')
 								}}
 							>
-								Change My Password
+								Changez votre mot de passe
 							</button>
 						)}
 
@@ -90,7 +90,7 @@ function Profile() {
 							deleteAccount(id)
 						}}
 						>
-							Delete account
+							Supprimez votre compte
 						</button>
 					</>
 				)}

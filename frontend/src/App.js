@@ -14,6 +14,7 @@ import { AuthContext } from "./helpers/AuthContext";
 import { useState, useEffect } from "react";
 import axios from "axios";
 import Groupomania from "./groupomania.png";
+import PostAddIcon from '@mui/icons-material/PostAdd';
 
 
 function App() {
@@ -66,14 +67,14 @@ function App() {
                   <Link to="/login"> 
                     <img  src={ Groupomania } alt="Logo de Groupomania" className='Logo'/>
                   </Link>
-                  <Link to="/registration"> Registration</Link>
+                  <Link to="/registration">S'inscrire</Link>
                 </>
               ) : (
                 <>
                   <Link to="/"> 
                     <img  src={ Groupomania } alt="Logo de Groupomania" className='Logo'/>
                   </Link>
-                  <Link to="/createpost"> Create A Post</Link>               
+                  <Link to="/createpost"><PostAddIcon/></Link>               
                 </>
               )}
             </div>

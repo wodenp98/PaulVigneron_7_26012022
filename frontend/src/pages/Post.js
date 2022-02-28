@@ -93,7 +93,7 @@ function Post() {
 
   const editPost = (option) => {
     if (option === "title") {
-      let newTitle = prompt("Enter New Title:");
+      let newTitle = prompt("Nouveau titre:");
       // eslint-disable-next-line
       if (newTitle != undefined && newTitle != "") {
         axios.put(
@@ -110,7 +110,7 @@ function Post() {
         setPostObject({ ...postObject, title: newTitle });
       }
     } else {
-      let newPostText = prompt("Enter New Text:")
+      let newPostText = prompt("Nouveau post:")
       // eslint-disable-next-line
       if (newPostText != undefined && newPostText != "") {
         axios.put(
@@ -173,14 +173,14 @@ function Post() {
         <div className="addCommentContainer">
           <input
             type="text"
-            placeholder="Comment..."
+            placeholder="Nouveau Commentaire"
             autoComplete="off"
             value={newComment}
             onChange={(event) => {
               setNewComment(event.target.value);
             }}
           />
-          <button onClick={addComment}> Add Comment</button>
+          <button onClick={addComment}>Ajouter un commentaire</button>
         </div>
         <div className="listOfComments">
           {comments.map((comment, key) => {

@@ -39,23 +39,23 @@ function ChangePassword() {
 
   return (
     <div className="password">
-      <h1>Change Your Password</h1>
+      <h1>Changez votre mot de passe</h1>
     <div className="borderPassword">
       <input
         type="text"
-        placeholder="Old Password..."
+        placeholder="Ancien mot de passe"
         onChange={(event) => {
           setOldPassword(event.target.value);
         }}
       />
       <input
         type="text"
-        placeholder="New Password..."
+        placeholder="Nouveau mot de passe"
         onChange={(event) => {
           setNewPassword(event.target.value);
         }}
       />
-      <button onClick={changePassword} className="validateChanges"> Save Changes</button>
+      <button onClick={changePassword} className="validateChanges">Enregistrer</button>
       </div>
     </div>
   );

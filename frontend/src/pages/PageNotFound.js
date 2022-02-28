@@ -13,10 +13,8 @@ function PageNotFound() {
 
   return  (  
     <div className='pageNotFound'>
-        <h1>Page Not Found</h1>
-        <h3> Go to the home page: 
-        <Link to="/"> Home Page</Link>
-        </h3>
+        <h1>Page non trouvé</h1>
+        <Link to="/">Retour à la page d'accueil</Link>
     </div>
   )
 }
