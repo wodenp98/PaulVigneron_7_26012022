@@ -13,78 +13,91 @@ body {
 }
 
 .post {
-  width: 400px;
-  // height: 300px;
+  width: 90vw;
+  height: 50vh;
   border-radius: 10px;
   display: flex;
   flex-direction: column;
-  margin-top: 50px;
-  border: 1px solid lightgray;
-  font-family: Arial, Helvetica, sans-serif;
+  margin-top: 25px;
+  margin-bottom: 25px;
   background-color: $color-tertiary;
-  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
 
-  @media (max-width: 768px) {
-    width: 90vw;
-    height: 50vh;
+  @media screen and (min-width: 768px) {
+    width: 95vw;
+    height: 60vh;
+  }
+
+  @media screen and (min-width: 992px) {
+    width: 600px;
+    height: 500px;
+  }
+
+  .title {
+    flex: 15%;
+    border-radius: 10px 10px 0 0;
+    background-color: $color-primary;
+    display: grid;
+    place-content: center;
+    color: $color-bgtxt;
+  }
+
+  .body {
+    flex: 70%;
+    display: grid;
+    color: $color-bgtxt;
+  }
+
+  .footer {
+    flex: 15%;
+    display: flex;
+    align-items: center;
+    padding-left: 15px;
+    background-color: $color-primary;
+    color: white;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+
+    .username {
+      flex: 50%;
+    }
+    .buttons {
+      flex: 50%;
+      display: flex;
+      justify-content: flex-end;
+      padding-right: 10px;
+      align-items: center;
+    }
   }
 }
 
-.post:hover {
-  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
-  cursor: pointer;
-}
-.post .title {
-  flex: 20%;
-  padding: 10px;
-  border-top-left-radius: 10px;
-  border-top-right-radius: 10px;
-  border-bottom: 1px solid lightgray;
-  background-color: $color-primary;
-  display: grid;
-  place-content: center;
-  color: $color-bgtxt;
-}
+.imagePost {
+  margin-top: 10px;
+  margin-bottom: 10px;
+  width: 100%;
+  height: 25vh;
 
-.post .body {
-  flex: 60%;
-  display: grid;
-  border-radius: 20px;
-  place-content: center;
-  color: $color-bgtxt;
-  .imagePost {
-    width: 100%;
+  @media screen and (min-width: 767px) {
+    height: 35vh;
+  }
+
+  @media screen and (min-width: 992px) {
+    height: 280px;
   }
 }
 
-.post .footer {
-  flex: 20%;
-  padding: 10px;
-  border-top: 1px solid lightgray;
-  display: flex;
-  align-items: center;
-  padding-left: 15px;
-  background-color: $color-primary;
-  color: $color-bgtxt;
-  border-bottom-left-radius: 10px;
-  border-bottom-right-radius: 10px;
-}
-
-.footer .username {
-  flex: 50%;
-}
-.footer .buttons {
-  flex: 50%;
-  display: flex;
-  justify-content: flex-end;
-  align-items: center;
+.text {
+  display: grid;
+  place-content: center;
 }
 
 .likeBttn {
-  color: rgba(250, 250, 250, 0.8);
-}
-.unlikeBttn {
   color: $color-bgtxt;
+  padding: 4px;
+  border-radius: 50%;
+}
+
+.unlikeBttn {
+  padding: 4px;
 }
 
 .buttons label {

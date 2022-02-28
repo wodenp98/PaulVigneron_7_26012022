@@ -74,8 +74,10 @@ function Home() {
               onClick={() => {
                 navigate(`/post/${value.id}`);
               }}
-            >
+            > 
+            <div className="text">
               {value.postText}
+            </div>
               {value.imageUrl != null && <img src={value.imageUrl} className="imagePost" alt="" />}
             </div>
             <div className="footer">
