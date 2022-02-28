@@ -152,7 +152,9 @@ function Post() {
               }
             }}
           >
-            {postObject.postText}
+            <div className="text">
+              {postObject.postText}
+            </div>
             {postObject.imageUrl && <img src={`../${postObject.imageUrl}`} className="imagePost" alt="" /> }
           </div>
           <div className="footer">

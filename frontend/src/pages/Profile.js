@@ -106,7 +106,9 @@ function Profile() {
                   navigate(`/post/${value.id}`);
                 }}
               >
-                {value.postText}
+                <div className="text">
+                    {value.postText}
+                </div>
                 {value.imageUrl && <img src={`../${value.imageUrl}`} className="imagePost" alt="" />}
               </div>
               <div className="footer">
