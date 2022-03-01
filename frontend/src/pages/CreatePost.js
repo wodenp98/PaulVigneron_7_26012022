@@ -67,7 +67,7 @@ function CreatePost() {
             <label>Titre: </label>
             <ErrorMessage name='title' component="span" />
             <Field 
-            id="inputCreatePost" 
+            className="inputCreatePost" 
             name="title" 
             placeholder="(Ex: Votre Titre)" 
             />
@@ -75,7 +75,7 @@ function CreatePost() {
             <label>Post: </label>
             <ErrorMessage name='postText' component="span" />
             <Field 
-            id="inputCreatePost" 
+            className="inputCreatePost" 
             name="postText" 
             placeholder="(Ex: Votre post)" 
             />
