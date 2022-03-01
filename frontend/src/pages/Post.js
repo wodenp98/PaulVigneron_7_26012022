@@ -107,9 +107,9 @@ function Post() {
     // modifie le titre
     if (option === "title") {
       let newTitle = prompt("Nouveau titre:");
-      // eslint-disable-next-line
 
       // le titre ne peut pas etre null
+      // eslint-disable-next-line
       if (newTitle != undefined && newTitle != "") {
         axios.put(
           "http://localhost:3001/posts/title",
