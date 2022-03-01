@@ -13,16 +13,18 @@ function Post() {
 
   let navigate = useNavigate();
 
+  // se lance quand on render la page
   useEffect(() => {
     
     if (!localStorage.getItem('accessToken')) {
       navigate('/login')
     } else {
-
+      // récupère le post grâce a l'id
     axios.get(`http://localhost:3001/posts/byId/${id}`).then((response) => {
       setPostObject(response.data);
     });
 
+    // récupère commentaire lié à un post
     axios.get(`http://localhost:3001/comments/${id}`).then((response) => {
       setComments(response.data);
     });
@@ -31,6 +33,8 @@ function Post() {
    // eslint-disable-next-line
 }, [navigate, id]);
 
+
+  // ajout d'un commentaire
   const addComment = () => {
     // eslint-disable-next-line
     if (newComment != "") { 
@@ -38,6 +42,7 @@ function Post() {
       .post(
         "http://localhost:3001/comments",
         {
+          // rajoute le nouveau commentaire et l'id du post au body
           commentBody: newComment,
           PostId: id,
         },
@@ -51,12 +56,14 @@ function Post() {
         if (response.data.error) {
           console.log(response.data.error);
         } else {
+          // Objet contenant le nouveau commentaire
           const commentToAdd = {
             commentBody: newComment,
             username: response.data.username,
             id: response.data.id,
           };
           setComments([...comments, commentToAdd]);
+          // réinitialise l'input
           setNewComment("");
         }
       });
@@ -66,12 +73,15 @@ function Post() {
     
   };
 
+  // supprime un commmentaire
   const deleteComment = (id) => {
     axios
       .delete(`http://localhost:3001/comments/${id}`, {
+        // rajoute id dans la requete axios
         headers: { accessToken: localStorage.getItem("accessToken") },
       })
       .then(() => {
+        // filtre les commentaires
         setComments(
           comments.filter((val) => {
             // eslint-disable-next-line
@@ -81,6 +91,7 @@ function Post() {
       });
   };
 
+  // supprime un post lorsque l'id correspond
   const deletePost = (id) => {
     axios
       .delete(`http://localhost:3001/posts/${id}`, {
@@ -91,10 +102,14 @@ function Post() {
       });
   };
 
+  // Modifier un post
   const editPost = (option) => {
+    // modifie le titre
     if (option === "title") {
       let newTitle = prompt("Nouveau titre:");
       // eslint-disable-next-line
+
+      // le titre ne peut pas etre null
       if (newTitle != undefined && newTitle != "") {
         axios.put(
           "http://localhost:3001/posts/title",
@@ -106,10 +121,12 @@ function Post() {
             headers: { accessToken: localStorage.getItem("accessToken") },
           }
         );
-  
+          // garde le corps mais on modifie le titre
         setPostObject({ ...postObject, title: newTitle });
       }
-    } else {
+    }
+    // modifie le corps du post
+    else {
       let newPostText = prompt("Nouveau post:")
       // eslint-disable-next-line
       if (newPostText != undefined && newPostText != "") {
@@ -137,6 +154,7 @@ function Post() {
           <div
             className="title"
             onClick={() => {
+              // seulement si la personne en est l'auteur
               if ((authState.username === postObject.username)  || (authState.isAdmin === true)) {
                 editPost("title");
               }
@@ -170,12 +188,14 @@ function Post() {
         </div>
       </div>
       <div className="rightSide">
+        {/* ajout d'un commentaire */}
         <div className="addCommentContainer">
           <input
             type="text"
             placeholder="Nouveau Commentaire"
             autoComplete="off"
             value={newComment}
+            // récupère le commentaire et le modifie dans le state
             onChange={(event) => {
               setNewComment(event.target.value);
             }}
@@ -183,6 +203,7 @@ function Post() {
           <button onClick={addComment}>Ajouter un commentaire</button>
         </div>
         <div className="listOfComments">
+          {/* afficher tout les commentaires grace a map */}
           {comments.map((comment, key) => {
             return (
               <div key={key} className="comment">
@@ -190,6 +211,7 @@ function Post() {
                   <label>{comment.username} : </label>
                   {comment.commentBody}
                 </div>
+                {/* icon delete si l'utilisateur en est le créateur */}
                 {((authState.username === comment.username) || (authState.isAdmin === true)) && (
                   <BackspaceIcon className="deleteIcon"
                   onClick={() => {

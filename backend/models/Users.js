@@ -1,3 +1,4 @@
+// Table User
 module.exports = (sequelize, DataTypes) => { 
 	const Users = sequelize.define("Users", { 
 	  username: {
@@ -16,7 +17,7 @@ module.exports = (sequelize, DataTypes) => {
 	  },
 
 	});
-  
+//   Un user peut faire plusieurs posts et commentaires et faire plusieurs likes
 	Users.associate = (models) => {
 	  Users.hasMany(models.Likes, {
 		onDelete: "cascade",

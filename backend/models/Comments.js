@@ -1,3 +1,4 @@
+// Table commentaire
 module.exports = (sequelize, DataTypes) => {
     const Comments = sequelize.define("Comments", {
       commentBody: {

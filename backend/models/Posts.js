@@ -1,3 +1,4 @@
+// Table Post
 module.exports = (sequelize, DataTypes) => {
 
 	const Posts = sequelize.define('Posts', {
@@ -24,7 +25,7 @@ module.exports = (sequelize, DataTypes) => {
 			allowNull: false,
 		},
 	})
-
+// Si un post est delete on delete également commentaire et likes
 	Posts.associate = (models) => {
 		Posts.hasMany(models.Comments, {
 			onDelete: "cascade",

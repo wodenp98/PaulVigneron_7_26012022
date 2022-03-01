@@ -11,12 +11,14 @@ function Registration() {
     }
 
     const validationSchema = Yup.object().shape({
-        username: Yup.string().min(3).max(30).required(),
-        password: Yup.string().min(4).max(20).required(),
+      // Controle des données des champs
+        username: Yup.string().min(3, '3 caractères minimum').max(30, '30 caractères maximum').required(),
+        password: Yup.string().min(4, '4 caractères minimum').max(20, '20 caractères maximum').required(),
     })
 
     let navigate = useNavigate()
 
+    // Envoie les données puis redirige vers login après la création du compte
     const onSubmit = (data) => {
         axios.post("http://localhost:3001/auth", data).then(() => {
             navigate('/login')
@@ -26,8 +28,11 @@ function Registration() {
   return (
     <div>
       <Formik 
+      // valeurs initiales du formulaires
         initialValues={initialValues} 
+        // fonction à la soumission du formulaire
         onSubmit={onSubmit} 
+        // vérification des champs
         validationSchema={validationSchema}
         >
 
@@ -35,6 +40,7 @@ function Registration() {
             <label>Pseudo: </label>
             <ErrorMessage name='username' component="span" />
             <Field 
+            autoComplete="off"
             className="inputCreatePost" 
             name="username" 
             placeholder="(Votre pseudo)" 
@@ -43,6 +49,7 @@ function Registration() {
             <label>Mot de passe: </label>
             <ErrorMessage name='password' component="span" />
             <Field 
+            autoComplete="off"
             type="password"
             className="inputCreatePost" 
             name="password" 

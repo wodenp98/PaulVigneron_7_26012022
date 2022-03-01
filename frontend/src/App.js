@@ -18,6 +18,7 @@ import PostAddIcon from '@mui/icons-material/PostAdd';
 
 
 function App() {
+  // Un utilisateur est il connecté?
   const [authState, setAuthState] = useState({
     username: "",
     id: 0,
@@ -34,10 +35,12 @@ function App() {
           accessToken: localStorage.getItem("accessToken"),
         },
       })
+      // si le token n'est pas validé ou l'utilisateur n'est pas vérifié = erreur
       .then((response) => {
         if (response.data.error) {
           setAuthState({ ...authState, status: false });
         } else {
+          // Sinon il est correctement authentifié
           setAuthState({
             username: response.data.username,
             id: response.data.id,
@@ -49,7 +52,9 @@ function App() {
  // eslint-disable-next-line
  }, []);
 
+//  Se déconnecter
   const logout = () => {
+    // On supprime l'access token du loccal storage on met à jour le status et on recharge la page
     localStorage.removeItem("accessToken");
     setAuthState({ username: "", id: 0, status: false, isAdmin: false });
     window.location.reload()
@@ -63,6 +68,7 @@ function App() {
           <div className="navbar">
             <div className="links">
               {!authState.status ? (
+                // Lien vers les pages si auth est false
                 <>
                   <Link to="/login"> 
                     <img  src={ Groupomania } alt="Logo de Groupomania" className='Logo'/>
@@ -70,6 +76,7 @@ function App() {
                   <Link to="/registration">S'inscrire</Link>
                 </>
               ) : (
+                // Si auth state est true
                 <>
                   <Link to="/"> 
                     <img  src={ Groupomania } alt="Logo de Groupomania" className='Logo'/>
@@ -88,6 +95,7 @@ function App() {
                />}
             </div>
           </div>
+          {/* Affiche les pages par routes */}
           <Routes>
             <Route path="/" element={<Home/>} />
             <Route path="/createpost" element={<CreatePost/>} />

@@ -5,14 +5,19 @@ const bcrypt = require("bcrypt");
 const { validateToken } = require("../middlewares/AuthMiddleware");
 const { sign } = require("jsonwebtoken");
 
+// S'enregistrer
 router.post("/", async (req, res) => {
+	// On recupère les données du body
   const { username, password } = req.body;
   const user = await Users.findOne({ where : { username : username}})
 
   if (user ) {
+	//   On verifie si l'utilisateur n'existe pas déjà
 	  res.json({ error : 'utilisateur existant'})
   } else {
+	//   On crypte le mot de passe
 	bcrypt.hash(password, 10).then((hash) => {
+		// Puis on créé l'utilisateur
 		Users.create({
 		  username: username,
 		  password: hash,
@@ -22,6 +27,7 @@ router.post("/", async (req, res) => {
   }
 });
 
+// Se connecter
 router.post('/login', async (req, res) => {
 	const { username, password } = req.body
 	const user = await Users.findOne({ where: { username: username } }) 
@@ -29,11 +35,13 @@ router.post('/login', async (req, res) => {
 	if (!user) { 
 		res.json({ error: "L'utilisateur n'existe pas !" })
 	} else {
+		// On vérifie si les données sont exactes
 		bcrypt.compare(password, user.password).then(async (match) => { 
 			if (!match) { 
+				// On renvoie l'erreur
 				res.json({ error: 'Mauvaise combination' }) 
 			} else {
-				
+				// On crée un token
 				const accessToken = sign(
 					{ username: user.username, id: user.id }, 
 					"importantsecret" 
@@ -45,18 +53,25 @@ router.post('/login', async (req, res) => {
 	}
 })
 
+// L'utilisateur est il authentifié?
 router.get('/verify', validateToken, async (req, res) => {
+	// On récupère username de validateToken
 	const { username } = req.user 
 
 	const user = await Users.findOne({ where: { username: username } }) 
 
+	// Est il admin?
 	req.user.isAdmin = user.isAdmin
+	// User valide
 	res.json(req.user)
 })
 
+// Info du profil
 router.get("/basicInfo/:id", async (req, res) => {
+	// On le fait grâce à l'id
   const id = req.params.id;
 
+//   On ne met pas le mot de passe dans les infos utilisateurs
   const basicInfo = await Users.findByPk(id, {
     attributes: { exclude: ["password"] },
   });
@@ -64,7 +79,9 @@ router.get("/basicInfo/:id", async (req, res) => {
   res.json(basicInfo);
 });
 
+// Modifie le mot de passe
 router.put('/changepassword', validateToken, async (req, res) => {
+	// On récupère l'ancien et le nouveau
 	const { oldPassword, newPassword } = req.body 
 
 	const user = await Users.findOne({ where: { username: req.user.username } })
@@ -73,8 +90,9 @@ router.put('/changepassword', validateToken, async (req, res) => {
 		if (!match)  { 
 			res.json({ error: 'Mauvais mot de passe' })
 		} else {
-
+			// On hash le nouveau mot de passe
 			bcrypt.hash(newPassword, 10).then((hash) => {
+				// On met à jour le mot de passe dans la table
 				Users.update( 
 					{ password: hash },
 					{ where: { username: req.user.username } }
@@ -85,9 +103,10 @@ router.put('/changepassword', validateToken, async (req, res) => {
 	})
 })
 
-
+// Supprime un utilisateur
 router.delete('/deleteUser/:id', validateToken, async (req, res) => {
 	const userId = req.params.id
+	// grâce à sequelize et à l'id
 	await Users.destroy({
 		where: {
 			id: userId,

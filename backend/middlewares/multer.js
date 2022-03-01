@@ -1,11 +1,13 @@
+// Multer pour gérer les images
 const multer = require('multer') 
 
+
 const multerConfig = multer.diskStorage({
-    
+    // localisation du fichier enregistré
     destination: (req, file, callback) => {
         callback(null, '../frontend/public/')    
     },
-    
+    // nom du fichier
     filename: (req, file, callback) => {
         
         const ext = file.mimetype.split('/')[1] 
@@ -13,6 +15,7 @@ const multerConfig = multer.diskStorage({
     }
 })
 
+// Est ce que c'est une image?
 const isImage = (req, file, callback) => {
     if(file.mimetype.startsWith('image')) {
         callback(null, true)
@@ -21,6 +24,7 @@ const isImage = (req, file, callback) => {
     }
 }
 
+// Config de multer
 const upload = multer({
     storage: multerConfig,
     fileFilter: isImage,

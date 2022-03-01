@@ -7,14 +7,15 @@ const { uploadImage } = require('../middlewares/multer')
 
 
 
-
+// Affiche tout les posts
 router.get('/', validateToken, async (req, res) => {
 	const listOfPosts = await Posts.findAll({ 
 		include: [Likes],
+		// Plus récent au plus ancien
 		order: [['id', 'DESC']],
 	})
 
-
+// trouver tout les likes
 	const likedPosts = await Likes.findAll({ where: { UserId: req.user.id } })
 
 
@@ -22,17 +23,20 @@ router.get('/', validateToken, async (req, res) => {
 
 })
 
-
+// Affiche individuellement les posts
 router.get('/byId/:id', async (req, res) => {
 	const id = req.params.id 
+
+	// On récupère le post grâce à l'id
 	const post = await Posts.findByPk(id) 
 	res.json(post)
 })
 
-
+// Affiche les posts d'un user
 router.get('/byUserId/:id', async (req, res) => {
 	const id = req.params.id
 
+	// Tout les posts d'un utilisateur
 	const listOfPosts = await Posts.findAll({
 		where: { UserId: id },
 		include: [Likes],
@@ -41,18 +45,22 @@ router.get('/byUserId/:id', async (req, res) => {
 	res.json(listOfPosts)
 })
 
-
+// Crée un post (avec texte et image)
 router.post('/', validateToken, uploadImage, async (req, res) => {
 	post = req.body 
 	post.username = req.user.username
 	post.UserId = req.user.id
+	// On vérifie si la création contient une image
 	if(!req.file) {
 		post.imageUrl = null
 	}
 	
 	else {
+		// Si oui on ajoute l'image
 		post.imageUrl = req.file.filename 
 	}
+
+	// On crée le post
 	await Posts.create(post) 
 	res.json(post)
 })	
@@ -64,9 +72,10 @@ router.put('/title', validateToken, async (req, res) => {
 	res.json(newTitle)
 })
 
-
+// Supprime le post
 router.put('/postText', validateToken, async (req, res) => {
 	const { newText, id } = req.body 
+	// On le fait grâce à l'id
 	await Posts.update({ postText: newText }, { where: { id: id } }) 
 	res.json(newText)
 })

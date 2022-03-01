@@ -4,6 +4,7 @@ import axios from "axios";
 import { AuthContext } from "../helpers/AuthContext";
 
 function Profile() {
+  // récupère l'id de l'url
   let { id } = useParams();
   let navigate = useNavigate();
   const [username, setUsername] = useState("");
@@ -15,10 +16,11 @@ function Profile() {
     if (!localStorage.getItem('accessToken')) {
       navigate('/login')
     } else {
+      // récupère username et le rajoute au state
     axios.get(`http://localhost:3001/auth/basicinfo/${id}`).then((response) => {
       setUsername(response.data.username);
     });
-
+    // récupère les posts qui appartiennent au profil et rajoute au state
     axios.get(`http://localhost:3001/posts/byuserId/${id}`).then((response) => {
       setListOfPosts(response.data);
     });
@@ -27,6 +29,7 @@ function Profile() {
   // eslint-disable-next-line
   }, [navigate, id]);
 
+  // supprime un compte avec son id
   const deleteAccount = () => {
 		axios
 			.delete(`http://localhost:3001/auth/deleteUser/${id}`, {
@@ -51,10 +54,12 @@ function Profile() {
     <div className="profilePageContainer">
       <div className="basicInfo">
         <h1> {username} </h1>
+        {/* affiche l'option de changer de  mot de passe si l'utilisateur du profil est celui qui est sur la page*/}
         {authState.username === username && (authState.isAdmin === false) && (
         <>
           <button className="changePassword"
             onClick={() => {
+              // redirige vers la page pour modifier son mot de passe
               navigate("/changepassword");
             }}
           >
@@ -96,6 +101,7 @@ function Profile() {
 				)}
       </div>
       <div className="listOfPosts">
+        {/* affiche tout les posts de l'user */}
         {listOfPosts.map((value, key) => {
           return (
             <div key={key} className="post">

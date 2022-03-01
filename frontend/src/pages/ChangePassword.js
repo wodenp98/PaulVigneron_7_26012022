@@ -16,8 +16,10 @@ function ChangePassword() {
   const changePassword = () => {
     axios
       .put(
+        // axios permet la modification
         "http://localhost:3001/auth/changepassword",
         {
+          // body ancien et nouveau mot de passe
           oldPassword: oldPassword,
           newPassword: newPassword,
         },
@@ -31,6 +33,7 @@ function ChangePassword() {
         if (response.data.error) {
           alert(response.data.error);
         } else {
+          // Si tout est validé on est redirigé vers la page d'accueil
           alert("mot de passe changé")
           navigate('/')
         }
@@ -45,6 +48,7 @@ function ChangePassword() {
         type="text"
         placeholder="Ancien mot de passe"
         onChange={(event) => {
+          // Met à jour le state de l'ancien mot de passe
           setOldPassword(event.target.value);
         }}
       />
@@ -52,6 +56,7 @@ function ChangePassword() {
         type="text"
         placeholder="Nouveau mot de passe"
         onChange={(event) => {
+          // Met à jour le state du nouveau mot de passe
           setNewPassword(event.target.value);
         }}
       />
