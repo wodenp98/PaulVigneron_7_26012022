@@ -72,7 +72,7 @@ router.put('/title', validateToken, async (req, res) => {
 	res.json(newTitle)
 })
 
-// Supprime le post
+// Modifie le body
 router.put('/postText', validateToken, async (req, res) => {
 	const { newText, id } = req.body 
 	// On le fait grâce à l'id
@@ -80,7 +80,7 @@ router.put('/postText', validateToken, async (req, res) => {
 	res.json(newText)
 })
 
-
+// Supprime le post
 router.delete('/:postId', validateToken, async (req, res) => {
 	const postId = req.params.postId
 	await Posts.destroy({ 
