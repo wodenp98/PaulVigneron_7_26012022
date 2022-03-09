@@ -3,6 +3,7 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import ThumbUpAltIcon from '@mui/icons-material/ThumbUpAlt'
+import CommentIcon from '@mui/icons-material/Comment';
 
 
 function Home() {
@@ -113,7 +114,9 @@ function Home() {
               <div className="username"><Link to ={`/profile/${value.UserId}`}>{value.username}</Link>
               </div>
               <label>{dateParser(value.createdAt)}</label>
+              
               <div className="buttons">
+                <CommentIcon />
                 <ThumbUpAltIcon
                   onClick={() => {
                     likeAPost(value.id);
