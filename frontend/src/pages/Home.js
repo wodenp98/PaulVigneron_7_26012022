@@ -31,6 +31,9 @@ function Home() {
         return like.PostId
       }));
     });
+    axios.get(`http://localhost:3001/comments/19`).then((response) => {
+    setComments(response.data)
+})
   }
   }, [navigate]);
 
