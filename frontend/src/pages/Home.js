@@ -7,6 +7,7 @@ import CommentIcon from '@mui/icons-material/Comment';
 
 
 function Home() {
+  
   // listes posts et likes
   const [listOfPosts, setListOfPosts] = useState([]);
   const [likedPosts, setLikedPosts] = useState([])
@@ -33,7 +34,7 @@ function Home() {
     });
     axios.get(`http://localhost:3001/comments/19`).then((response) => {
     setComments(response.data)
-})
+}) 
   }
   }, [navigate]);
 
@@ -129,9 +130,6 @@ function Home() {
                   onClick={() => {
                     likeAPost(value.id);
                   }}
-                  // className={
-                  //   likedPosts.includes(value.id) ? "unlikeBttn" : "likeBttn"
-                  // }
                 />
                 {/* nombre de likes */}
                 <label> {value.Likes.length}</label>
