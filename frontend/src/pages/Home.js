@@ -123,14 +123,15 @@ function Home() {
               <label>{dateParser(value.createdAt)}</label>
               
               <div className="buttons">
-                <CommentIcon />
-                <ThumbUpAltIcon
+                <CommentIcon className="commentIcon"/>
+                {comments.length}
+                <ThumbUpAltIcon className="thumbIcon"
                   onClick={() => {
                     likeAPost(value.id);
                   }}
-                  className={
-                    likedPosts.includes(value.id) ? "unlikeBttn" : "likeBttn"
-                  }
+                  // className={
+                  //   likedPosts.includes(value.id) ? "unlikeBttn" : "likeBttn"
+                  // }
                 />
                 {/* nombre de likes */}
                 <label> {value.Likes.length}</label>

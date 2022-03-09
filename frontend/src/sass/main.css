@@ -130,6 +130,14 @@ body {
   margin-left: 10px;
 }
 
+.commentIcon {
+  padding-right: 10px;
+}
+
+.thumbIcon {
+  padding-left: 10px;
+}
+
 .createPostPage {
   font-family: Arial, Helvetica, sans-serif;
   width: 100vw;
