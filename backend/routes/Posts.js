@@ -50,6 +50,7 @@ router.post('/', validateToken, uploadImage, async (req, res) => {
 	post = req.body 
 	post.username = req.user.username
 	post.UserId = req.user.id
+	post.createdAt = req.user.createdAt
 	// On vérifie si la création contient une image
 	if(!req.file) {
 		post.imageUrl = null
