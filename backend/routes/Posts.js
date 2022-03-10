@@ -1,6 +1,6 @@
 const express = require('express')
 const router = express.Router() 
-const { Posts, Likes } = require('../models')
+const { Posts, Likes, Comments } = require('../models')
 
 const { validateToken } = require('../middlewares/AuthMiddleware')
 const { uploadImage } = require('../middlewares/multer')
@@ -10,14 +10,14 @@ const { uploadImage } = require('../middlewares/multer')
 // Affiche tout les posts
 router.get('/', validateToken, async (req, res) => {
 	const listOfPosts = await Posts.findAll({ 
-		include: [Likes],
+		include: [Likes, Comments],
 		// Plus récent au plus ancien
 		order: [['id', 'DESC']],
 	})
 
+	console.log(listOfPosts)
 // trouver tout les likes
 	const likedPosts = await Likes.findAll({ where: { UserId: req.user.id } })
-
 
 	res.json({ listOfPosts, likedPosts })
 

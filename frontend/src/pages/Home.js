@@ -1,13 +1,13 @@
 import React from "react";
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import ThumbUpAltIcon from '@mui/icons-material/ThumbUpAlt'
 import CommentIcon from '@mui/icons-material/Comment';
 
 
 function Home() {
-  
+  let { id } = useParams()
   // listes posts et likes
   const [listOfPosts, setListOfPosts] = useState([]);
   const [likedPosts, setLikedPosts] = useState([])
@@ -32,11 +32,11 @@ function Home() {
         return like.PostId
       }));
     });
-    axios.get(`http://localhost:3001/comments/19`).then((response) => {
+    axios.get(`http://localhost:3001/comments/${id}`).then((response) => {
     setComments(response.data)
 }) 
   }
-  }, [navigate]);
+  }, [navigate, id]);
 
   
 
@@ -103,6 +103,7 @@ function Home() {
     <div>
       {/* map pour afficher le post */}
       {listOfPosts.map((value, key) => {
+        console.log(listOfPosts)
         return (
           <div key={key} className="post">
             <div className="title"> {value.title} </div>
@@ -125,7 +126,7 @@ function Home() {
               
               <div className="buttons">
                 <CommentIcon className="commentIcon"/>
-                {comments.length}
+                {value.Comments.length}
                 <ThumbUpAltIcon className="thumbIcon"
                   onClick={() => {
                     likeAPost(value.id);
