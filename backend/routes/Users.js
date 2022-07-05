@@ -10,20 +10,30 @@ router.post("/", async (req, res) => {
 	// On recupère les données du body
   const { username, password } = req.body;
   const user = await Users.findOne({ where : { username : username}})
+ 
 
   if (user ) {
 	//   On verifie si l'utilisateur n'existe pas déjà
 	  res.json({ error : 'utilisateur existant'})
   } else {
 	//   On crypte le mot de passe
-	bcrypt.hash(password, 10).then((hash) => {
+	  
 		// Puis on créé l'utilisateur
-		Users.create({
+		try{  
+			const hash = await bcrypt.hash(password, 10) 
+			await Users.create({
 		  username: username,
 		  password: hash,
 		});
-		res.json("SUCCESS");
-	  });
+		res.json("SUCCESS");  }
+		catch(error) {
+		 console.log(error)
+			res.json("error")
+		
+		}
+		
+		
+
   }
 });
 
